@@ -4,9 +4,6 @@ import callGroq from '../utilities/CallGroq'
 
 export default function Login({setUser}) {
 
-  console.log(setUser)
-  console.log(typeof setUser)
-
     return (
       <>
         <h1>NoteAI</h1>
