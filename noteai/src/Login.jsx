@@ -7,7 +7,6 @@ import { useState } from 'react'
 
 export default function Login({setUser}) {
 
-  // const [user, setUser] = useState(null); // Initialize user state
   const [email, setEmail] = useState(''); // Initialize email state
   const [password, setPassword] = useState(''); // Initialize password state
 
@@ -23,6 +22,7 @@ export default function Login({setUser}) {
       console.error("Login error:", error); // Handle login error
     }
   };
+
 
     return (
       <>
