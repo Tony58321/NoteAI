@@ -1,5 +1,5 @@
-import { simpleGroqQuestion, askGroqPrompt  } from './apiTest.js';
-
+//import { simpleGroqQuestion, askGroqPrompt  } from './apiTest.js';
+import { simpleGroqQuestion, askGroqPrompt  } from './groqAPI.js';
 
 
 /*function calls groq with an input string prompt.*/
