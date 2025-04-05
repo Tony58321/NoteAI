@@ -1,6 +1,12 @@
+import { simpleGroqQuestion } from './apiTest.js';
 
-export default function callGroq(){
+
+export default async function callGroq(inputString ){
 
     console.log("test!");
+
+    await simpleGroqQuestion();
+
+
 
 }
