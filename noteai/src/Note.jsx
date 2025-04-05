@@ -4,7 +4,7 @@ import TextStyle from '@tiptap/extension-text-style'
 import Color from '@tiptap/extension-color'
 import Underline from '@tiptap/extension-underline'
 
-export default function Note() {
+export default function Note({setPage}) {
 
     const editor = useEditor({
         extensions: [StarterKit, TextStyle, Color, Underline],
@@ -12,7 +12,9 @@ export default function Note() {
     })
     return (
         <>
+            <button onClick={() => setPage("Home")}>Home</button>
             <h1>NoteAI</h1>
+            <button>Review Notes</button>
             <button
                 onClick={() => editor.chain().focus().toggleBold().run()}
                 disabled={

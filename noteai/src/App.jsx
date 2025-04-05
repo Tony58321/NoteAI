@@ -12,7 +12,7 @@ function App() {
   if (!user) {
     return <Login setUser={(user => setUser(user))}/>;
   } else if (page == "Note") {
-    return <Note/>;
+    return <Note setPage={setPage}/>;
   } else {
     return <Home user={user} logout={() => setUser(null)} setPage={setPage}/>;
   }

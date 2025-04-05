@@ -7,8 +7,8 @@ import { useState } from 'react'
 
 export default function Login({setUser}) {
 
-  const [email, setEmail] = useState(''); // Initialize email state
-  const [password, setPassword] = useState(''); // Initialize password state
+  const [email, setEmail] = useState('statify100@gmail.com'); // Initialize email state
+  const [password, setPassword] = useState('StatifyIsVeryAwesome3000'); // Initialize password state
 
   // const navigate = useNavigate(); // Might use this for navigation after login
 
