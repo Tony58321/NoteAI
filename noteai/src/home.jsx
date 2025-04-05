@@ -15,7 +15,7 @@ export default function Home({user, logout, setPage}) {
         <div class="Banner">
             <h1>NoteAI</h1>
             <h3>Slogan here</h3>
-            <p>welcome, {String(user)}</p>
+            <p>welcome, {String(user.email)}</p>
             <button onClick={logout}>Logout</button>
         </div>
         <div class="content">
