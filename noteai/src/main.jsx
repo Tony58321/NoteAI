@@ -6,6 +6,6 @@ import Note from './Note.jsx'
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
-    <Note />
+    <App/>
   </StrictMode>,
 )
