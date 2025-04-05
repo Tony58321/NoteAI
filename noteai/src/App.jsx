@@ -10,7 +10,7 @@ function App() {
   if (user) {
     return <Home user={user} logout={() => setUser(null)}/>;
   } else {
-    return <Login setUser={setUser}/>;
+    return <Login setUser={(user => setUser(user))}/>;
   }
 }
 

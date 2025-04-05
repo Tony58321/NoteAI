@@ -2,7 +2,10 @@ import './App.css'
 import LogInUser from '../utilities/logInUser'
 import callGroq from '../utilities/CallGroq'
 
-export default function Login(setUser) {
+export default function Login({setUser}) {
+
+  console.log(setUser)
+  console.log(typeof setUser)
 
     return (
       <>

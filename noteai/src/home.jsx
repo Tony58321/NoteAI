@@ -1,4 +1,4 @@
-export default function Home(user, logout) {
+export default function Home({user, logout}) {
     return <>
         <h1>NoteAI</h1>
         <h3>Slogan here</h3>
