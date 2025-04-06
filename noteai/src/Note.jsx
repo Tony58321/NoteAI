@@ -119,7 +119,9 @@ export default function Note({ setPage, noteID }) {
 
 
             <div id="editorContainer">
+                <label id="noteNameLabel" htmlFor='noteName'>Title</label>
                 <input placeholder="Note Title" type='text' name='noteName' id='noteNameInput' defaultValue={noteData ? noteData.name : ""}></input>
+                <label id="noteCategoryLabel" htmlFor='noteCategory'>Category</label>
                 <input placeholder="Category" type='text' name='noteCategory' id='noteCategoryInput' defaultValue={noteData ? noteData.category : ""}></input>
                 <div id="editorOptions">
 
