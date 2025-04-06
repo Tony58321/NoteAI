@@ -5,9 +5,10 @@ import { useState, useEffect } from "react";
 
 export default function Home({user, logout, setPage, setNoteID}) {
     const [notes, setNotes] = useState([]);
-    if (notes.length == 0) {
-        getNotes().then(fetchedNotes => setNotes(fetchedNotes));
-    }
+    useEffect(() => {
+        if (user) {
+            getNotes(user).then(fetchedNotes => setNotes(fetchedNotes));
+        }}, [user]);
     return <>
         <div className="menu">
             <button disabled>Home</button>

@@ -5,6 +5,7 @@ import Note from './Note';
 import Landing from './Landing';
 import Login from './Login';
 import FlashCards from './flashCards';
+import SignUp from './Signup';
 
 function App() {
   const [user, setUser] = useState(null);
@@ -17,7 +18,15 @@ function App() {
     return <Login setUser={user => {
       setUser(user);
       setPage("Home");
-    }}/>
+    }}
+    setPage={setPage}/>
+  }
+  else if (page == "Signup") {
+    return <SignUp setUser={user => {
+      setUser(user);
+      setPage("Home");
+    }}
+    setPage={setPage} />
   }
   else if (!user) {
     return <Landing setLoginPage={() => setPage("Login")}/>;
