@@ -6,6 +6,7 @@ import Landing from './Landing';
 import Login from './Login';
 import FlashCards from './flashCards';
 import SignUp from './Signup';
+import Quiz from './quiz';
 
 function App() {
   const [user, setUser] = useState(null);
@@ -32,7 +33,9 @@ function App() {
     return <Landing setLoginPage={() => setPage("Login")}/>;
   } else if (page == "Note") {
     return <Note setPage={setPage} noteID={noteID}/>;
-  }else if(page == "FlashCards"){
+  } else if(page == "Quiz"){
+    return <Quiz noteID={noteID} setPage={setPage}/>;
+  } else if(page == "FlashCards"){
     return <FlashCards noteID={noteID} setPage={setPage}/>;
   }
   else {

@@ -31,6 +31,7 @@ export default function Home({user, logout, setPage, setNoteID}) {
                         <th>Category</th>
                         <th>Creation Date</th>
                         <th>Flash Cards</th>
+                        <th>Quiz</th>
                     </tr>
                 </thead>
                 <tbody>

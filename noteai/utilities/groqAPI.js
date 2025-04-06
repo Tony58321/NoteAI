@@ -35,6 +35,20 @@ export async function passGroqPrompt(promptString){
 
 
 
+export async function GroqTTS(text) {
+  // adapted from https://console.groq.com/docs/text-to-speech
+  
+  const response = await groq.audio.speech.create({
+    model: "playai-tts",
+    voice: "Fritz-PlayAI",
+    input: text,
+    response_format: "wav"
+  });
+  return response;
+}
+
+
+
 
 
 //These two lower functions were just used to test a few things, not too useful for anything right now
