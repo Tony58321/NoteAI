@@ -62,13 +62,14 @@
 }
 
 
+
 /*Cool stylistic black square*/
 #blackSquare{
     width: 30px;  
     height: 30px; 
     background-color: black; 
     position: absolute;
-    bottom: 0; /* Start at the bottom */
+    bottom: -20; /* Start at the bottom */
     animation: moveUp 15s linear infinite, rotateShape 15s linear infinite;
 
     left: 80%;
@@ -83,9 +84,15 @@
 @keyframes moveUp {
     0% {
       bottom: 0; /* Starts at the bottom of the screen */
+      opacity: 0;
     }
+
+    10%{
+      opacity: 1;
+    }
+
     100% {
-      bottom: 100vh; /* Moves to the top of the screen */
+      bottom: 125vh; /* Moves to the top of the screen */
     }
 }
 
