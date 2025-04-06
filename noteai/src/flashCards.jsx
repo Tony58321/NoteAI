@@ -9,9 +9,25 @@ import './flashCards.css'
 
 
 function generateCards(flashCards){
-    //return<>
-    //<p>test content</p>
-    //</>;
+
+
+
+
+    const cards = [];
+
+    for (let i = 0; i < flashCards.length; i++) {
+        cards.push(
+          <React.Fragment key={i}>
+            <div key={i} className="card">
+                <p>{flashCards[i].question}</p>
+                <p className= "hidden-text">{flashCards[i].answer}</p>
+            </div>
+            
+
+          </React.Fragment>
+        );
+    }
+    return <>{cards}</>;
 
 
 
@@ -21,6 +37,8 @@ function generateCards(flashCards){
 
 
 
+
+/*
     const cards = [];
 
     for (let i = 1; i <= 10; i++) {
@@ -36,6 +54,7 @@ function generateCards(flashCards){
         );
     }
     return <>{cards}</>;
+*/
 
 
 }
@@ -85,20 +104,6 @@ export default function FlashCards(){
         :
         generateCards(flashCards)
         }
-
-
-
-
-
-
-
-
-        <div className="card"> 
-            <p>Q: What is 9+10?</p>
-
-            <p className= "hidden-text">A: Twenty-One</p>
-        </div>
-        
         
         </>
 
