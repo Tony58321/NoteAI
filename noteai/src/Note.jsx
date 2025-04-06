@@ -6,6 +6,7 @@ import Color from '@tiptap/extension-color';
 import Underline from '@tiptap/extension-underline';
 import FontFamily from '@tiptap/extension-font-family';
 import { saveNotesToFirebase } from '../utilities/saveNotes';
+import { updateNotesInFirebase } from '../utilities/updateNotes';
 import { getAuth } from 'firebase/auth';
 
 import './Note.css'
@@ -64,8 +65,12 @@ export default function Note({ setPage, noteID }) {
         console.log("note category:", noteCategory);
 
         try {
-            const id = await saveNotesToFirebase(user.uid, noteName, noteCategory, editor.getHTML(), 'html');
-            alert("Saved note with ID: " + id);
+            if (!noteID) {
+                const id = await saveNotesToFirebase(user.uid, noteName, noteCategory, editor.getHTML(), 'html');
+                alert("Saved note with ID: " + id);
+            } else {
+                updateNotesInFirebase(noteID, noteName, noteCategory, editor.getHTML(), 'html');
+            }
         } catch (e) {
             alert("Error saving note: " + e.message);
         }
