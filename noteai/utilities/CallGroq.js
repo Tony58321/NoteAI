@@ -33,4 +33,75 @@ let comboString = instructions + string;
 
 let result = await askGroqPrompt(comboString);
 console.log(result);
+
+
+let quizQuestionArray = [];
+
+
+
+
+/*THIS SECTION WILL REQUIRE SOME WORK TO ENSURE ALL EDGE CASES ARE COVERED BUT SHOULD BE FINE FOR NOW*/
+
+// Split the string by newline character to get an array of lines
+let lines = result.split('\n');
+// Iterate through the array of lines
+
+let questionSavingMode = false;
+let questionString = "";
+let answerString = "";
+for (let i = 0; i < lines.length; i++) {
+
+
+  if (lines[i] == "/-----------------------------------------------------------------------/" ){
+
+    //Record previous Q+A combo before starting
+    if(questionString != ""){
+
+
+      let cardItem = {
+        question: questionString,
+        answer: answerString
+      };
+      quizQuestionArray.push(cardItem);
+
+      //console.log(questionString);
+      //console.log(answerString);
+
+      //quizQuestionArray.push()
+
+    }
+
+
+    questionSavingMode = true;
+    questionString = "";
+    answerString = "";
+    continue;
+  }
+  else if(lines[i] =="*******************" ){
+    questionSavingMode = false;
+    answerString = "";
+    continue;
+  }
+
+  //currently recording a question
+  if(questionSavingMode == true ){
+    questionString += lines[i];
+  }
+  //currently recording an answer
+  else{
+    answerString += lines[i];
+  } 
+  
+  //console.log(`Line ${i + 1}: ${lines[i]}`);
+}
+//record last trailing Q+A combo 
+let cardItem = {
+  question: questionString,
+  answer: answerString
+};
+quizQuestionArray.push(cardItem);
+
+console.log(quizQuestionArray);
+
+
 }
