@@ -5,7 +5,7 @@ import { useState } from 'react'
 // import { useNavigate } from 'react-router-dom'; // if using React Router
 
 
-export default function Login({ setUser }) {
+export default function Login({ setUser, setPage }) {
 
   const [email, setEmail] = useState(import.meta.env.VITE_DEFAULT_USER); // Initialize email state
   const [password, setPassword] = useState(import.meta.env.VITE_DEFAULT_PASS); // Initialize password state
@@ -42,6 +42,8 @@ export default function Login({ setUser }) {
 
       <br /><br />
 
+      <p> New User? </p>
+      <button onClick={() => setPage("Signup")}>Create Account</button>
       <br /><br />
 
       <label htmlFor='aiprompt'>prompt</label>
