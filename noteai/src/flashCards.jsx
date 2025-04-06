@@ -61,7 +61,7 @@ function generateCards(flashCards){
 }
 
 
-export default function FlashCards({noteID}){
+export default function FlashCards({noteID, setPage}){
 
 
 
@@ -107,6 +107,10 @@ export default function FlashCards({noteID}){
 
     return(
         <>
+        
+        <button id="homeButton" onClick={() => setPage("Home")}>
+            <img src="/src/assets/backArrow.png" height="25px" width="25px"></img>
+        </button>
         <h1>Flashcards</h1>
 
         {!flashCards ?
