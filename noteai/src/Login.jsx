@@ -1,11 +1,11 @@
-import './App.css'
+import './Login.css'
 import LogInUser from '../utilities/logInUser'
 import callGroq from '../utilities/CallGroq'
 import { useState } from 'react'
 // import { useNavigate } from 'react-router-dom'; // if using React Router
 
 
-export default function Login({setUser}) {
+export default function Login({ setUser }) {
 
   const [email, setEmail] = useState('statify100@gmail.com'); // Initialize email state
   const [password, setPassword] = useState('StatifyIsVeryAwesome3000'); // Initialize password state
@@ -24,25 +24,26 @@ export default function Login({setUser}) {
   };
 
 
-    return (
-      <>
-        <h1>NoteAI</h1>
-        <h3>Slogan here</h3>
-        <label for='Username'>Username</label>
-        <input type='text' name='Username' id='usernameInput' value={email} onChange={(e) => setEmail(e.target.value)}></input>
-        <br/>
-        <label for='password'>Password:</label>
-        <input type='text' name='password' id='passwordInput' value={password} onChange={(e) =>setPassword(e.target.value)}></input>
-        
-        <button onClick={handleLogin}>Log in</button>
+  return (
+    <>
+      <h1>Login</h1>
+      <div id="loginInfoContainer">
+        <label for='username'>Username</label>
+        <input type='text' name='username' id='usernameInput' value={email} onChange={(e) => setEmail(e.target.value)}></input>
+        <br />
+        <label for='password'>Password</label>
+        <input type='text' name='password' id='passwordInput' value={password} onChange={(e) => setPassword(e.target.value)}></input>
+      </div>
 
-        <br/><br/>
+      <button onClick={handleLogin}>Log in</button>
 
-        <br/><br/>
+      <br /><br />
 
-        <label for='aiprompt'>prompt</label>
-        <input type='text' name='aiprompt' id='aiprompt'></input>
-        <button onClick={() => callGroq(document.getElementById("aiprompt").value)}>Call Groq</button>
-      </>
-    )
+      <br /><br />
+
+      <label for='aiprompt'>prompt</label>
+      <input type='text' name='aiprompt' id='aiprompt'></input>
+      <button onClick={() => callGroq(document.getElementById("aiprompt").value)}>Call Groq</button>
+    </>
+  )
 }

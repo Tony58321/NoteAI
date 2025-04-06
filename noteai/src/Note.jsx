@@ -31,28 +31,28 @@ const COLORS = {
     "Grey": "#808080",
 }
 
-export default function Note({setPage}) {
+export default function Note({ setPage }) {
 
     // Function to save notes to Firebase Firestore
     // CAN BE DELETED LATER WHEN WE HAVE A REAL NOTE
     // ---------------------------------------------------------------------------------
     const handleSave = async () => {
         const user = getAuth().currentUser;
-    
+
         if (!user) {
-          alert("You must be logged in.");
-          return;
+            alert("You must be logged in.");
+            return;
         }
-    
+
         const content = '<p>Start taking notes here...</p>'; // your placeholder
-    
+
         try {
-            const id = await saveNotesToFirebase(user.uid, content, 'html');
+            const id = await saveNotesToFirebase(user.uid, editor.getHTML(), 'html');
             alert("Saved note with ID: " + id);
-          } catch (e) {
+        } catch (e) {
             alert("Error saving note: " + e.message);
-          }
-        };
+        }
+    };
     // --------------------------------------------------------------------------------
 
 
@@ -64,21 +64,18 @@ export default function Note({setPage}) {
     // set the font to the default
     useEffect(() => {
         editor.chain().focus().setFontFamily(Object.keys(FONTS)[0]).run();
-        }, []);
+    }, []);
 
     return (
         <>
             <h1 id="title">NoteAI</h1>
-        {/* TEST BUTTON CAN BE DELETED LATER */}
-            <h1>Notes Page</h1>
-            <button onClick={handleSave}>Save Placeholder Note</button>
-        {/*--------------------------------------------------------------  */}
 
             <button id="homeButton" onClick={() => setPage("Home")}>
                 <img src="/src/assets/backArrow.png" height="25px" width="25px"></img>
             </button>
             {/* <button>Review Notes</button> */}
             <div id="editorContainer">
+                <h2 id="noteTitle">Notes Page</h2>
                 <div id="editorOptions">
 
                     <button
@@ -109,36 +106,37 @@ export default function Note({setPage}) {
                     >I</button>
 
 
-            <button
-                onClick={() => editor.chain().focus().toggleUnderline().run()}
-                disabled={
-                !editor.can()
-                    .chain()
-                    .focus()
-                    .toggleUnderline()
-                    .run()
-                }
-                className={editor.isActive('underline') ? 'is-active' : ''}
-            >U</button>
-            <select
-                onChange={(e) => editor.chain().focus().setColor(e.target.value).run()}
-                defaultValue = "">
-                {Object.keys(COLORS).map(color => <option value={COLORS[color]} style={{color: color}} key={color}>{color}</option>)}
-            </select>
-            <select
-                onChange={(e) => editor.chain().focus().setFontFamily(e.target.value).run()}
-                defaultValue = {Object.keys(FONTS)[0]}>
-                {Object.keys(FONTS).map(font => <option value={FONTS[font]} style={{fontFamily: FONTS[font]}} key={font}>{font}</option>)}
-            </select>
-
-            <div className="editor">
-                <EditorContent editor={editor} />
+                    <button
+                        onClick={() => editor.chain().focus().toggleUnderline().run()}
+                        disabled={
+                            !editor.can()
+                                .chain()
+                                .focus()
+                                .toggleUnderline()
+                                .run()
+                        }
+                        className={editor.isActive('underline') ? 'is-active' : 'editorButton'}
+                    >U</button>
+                    <select
+                        className="selectMenu"
+                        onChange={(e) => editor.chain().focus().setColor(e.target.value).run()}
+                        defaultValue="">
+                        {Object.keys(COLORS).map(color => <option value={COLORS[color]} style={{ color: color }} key={color}>{color}</option>)}
+                    </select>
+                    <select
+                        className="selectMenu"
+                        onChange={(e) => editor.chain().focus().setFontFamily(e.target.value).run()}
+                        defaultValue={Object.keys(FONTS)[0]}>
+                        {Object.keys(FONTS).map(font => <option value={FONTS[font]} style={{ fontFamily: FONTS[font] }} key={font}>{font}</option>)}
+                    </select>
+                </div>
+                <div className="editor">
+                    <EditorContent editor={editor} />
+                </div>
+                <button id="save"
+                    onClick={handleSave}
+                >Save</button>
             </div>
-            </div>
-            </div>
-            <button
-                onClick={() => console.log(editor.getHTML())}
-            >Save</button>
         </>
     )
 }
