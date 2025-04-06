@@ -17,7 +17,7 @@ body {
 
 #loginHeader {
     margin: 10px;
-    margin-top: 20vh;
+    margin-top: 15vh;
     padding: 0;
     font-size: 30px;
     font-weight: 600;
@@ -45,4 +45,24 @@ p {
     font-weight: 400;
     margin: 0;
     padding: 0;
+}
+
+#loginButton {
+    background-color: black;
+    color: white;
+    width: 125px;
+}
+
+#createAccount {
+    background-color: black;
+    color: white;
+    width: 200px;
+}
+
+#loginButton:hover {
+    box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.3);
+}
+
+#createAccount:hover {
+    box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.3);
 }

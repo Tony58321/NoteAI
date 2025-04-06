@@ -5,6 +5,7 @@ import TextStyle from '@tiptap/extension-text-style';
 import Color from '@tiptap/extension-color';
 import Underline from '@tiptap/extension-underline';
 import FontFamily from '@tiptap/extension-font-family';
+import Placeholder from '@tiptap/extension-placeholder'
 import { saveNotesToFirebase } from '../utilities/saveNotes';
 import { updateNotesInFirebase } from '../utilities/updateNotes';
 import { getAuth } from 'firebase/auth';
@@ -79,7 +80,7 @@ export default function Note({ setPage, noteID }) {
 
 
     const editor = useEditor({
-        extensions: [StarterKit, TextStyle, Color, Underline, FontFamily],
+        extensions: [StarterKit, TextStyle, Color, Underline, FontFamily, Placeholder.configure({placeholder: 'Enter your notes here ...',})],
         content:  "",
     });
 
@@ -118,10 +119,8 @@ export default function Note({ setPage, noteID }) {
 
 
             <div id="editorContainer">
-                <h2 id="noteTitle"> <label for='noteName'>Name</label> </h2>
-                <input type='text' name='noteName' id='noteNameInput' defaultValue={noteData ? noteData.name : ""}></input>
-                <h2 id ="categoryTitle"> <label for='noteCategory'>Category</label> </h2>
-                <input type='text' name='noteCategory' id='noteCategoryInput' defaultValue={noteData ? noteData.category : ""}></input>
+                <input placeholder="Note Title" type='text' name='noteName' id='noteNameInput' defaultValue={noteData ? noteData.name : ""}></input>
+                <input placeholder="Category" type='text' name='noteCategory' id='noteCategoryInput' defaultValue={noteData ? noteData.category : ""}></input>
                 <div id="editorOptions">
 
                     <button
@@ -221,11 +220,11 @@ export default function Note({ setPage, noteID }) {
                 </div>
 
                 <div id="aiGen" className="hidden">
-                    <p>Ask Groq to generate your notes!</p>
-                    <label htmlFor="aiInput">Enter topic</label>
-                    <input id="aiInput"></input>
-                    <p id="loading" className="hidden">Loading</p>
+                    <p id="askGroq">Ask Groq to generate your notes!</p>
+                    <input placeholder="Enter topic" id="aiInput"></input>
+                    <p id="loading" className="hidden">Generating notes...</p>
                     <button
+                        id="generate"
                         onClick={async () => {
                             document.getElementById("loading").classList.toggle("hidden")
                             let prompt = "Generate notes about this subject: " + document.getElementById("aiInput").value + " in HTML format ie using <p> tags, <h1>, <ul>, etc. Try to avoid giving information in paragraphs and prioritize bulleted lists of information."
