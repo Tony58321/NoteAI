@@ -1,0 +1,52 @@
+#logout {
+    position: absolute;
+    height: 30px;
+    width: 30px;
+    margin: 5px;
+    top: 15px;
+    right: 15px;
+    padding: 0;
+    background-color: #ffffff;
+    border: none;
+}
+
+#logout:hover {
+    box-shadow: none;
+}
+
+#logout:hover img {
+    height: 27px;
+    width: 27px;
+}
+
+#notes {
+    text-align: left;
+    border-spacing: 10px;
+    margin: 10px;
+}
+
+#notes th {
+    padding: 0.25vw 5vh;
+}
+
+#notes td {
+    padding: 0.25vw 5vh;
+}
+
+#notes:hover td {
+    cursor: pointer;
+}
+
+#welcomeHome {
+    margin: 30px;
+    margin-top: 8vh;
+    font-size: 30px;
+    font-weight: 500;
+}
+
+#newNote {
+    margin: 30px;
+    width: 150px;
+    background-color: black;
+    color: white;
+}

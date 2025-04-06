@@ -37,13 +37,15 @@
     font-size: 18px;
     font-weight: 500;
     border-radius: 100px;
+    background-color: black;
+    color: white;
 
     animation: easeInText 2s ease-out;
 
 }
 
 #toLogin:hover {
-    box-shadow: inset 1px 1px 5px rgba(0,0,0,0.2);
+  box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.3);
 }
 
 

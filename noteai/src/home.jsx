@@ -1,7 +1,7 @@
 import NoteListing from "./components/noteListing";
 import getNotes from "../utilities/getNotes";
 import { useState, useEffect } from "react";
-
+import './Home.css'
 
 export default function Home({user, logout, setPage, setNoteID}) {
     const [notes, setNotes] = useState([]);
@@ -10,21 +10,21 @@ export default function Home({user, logout, setPage, setNoteID}) {
             getNotes(user).then(fetchedNotes => setNotes(fetchedNotes));
         }}, [user]);
     return <>
-        <div className="menu">
+        {/* <div className="menu">
             <button disabled>Home</button>
             <button>Quiz results</button>
             <button>Etc.</button>
             <button onClick={() => setPage("FlashCards")} >Flash Cards</button>
-        </div>
+        </div> */}
         <div className="Banner">
-            <h1>NoteAI</h1>
-            <h3>Slogan here</h3>
-            <p>welcome, {String(user.email)}</p>
-            <button onClick={logout}>Logout</button>
+            <h1 id="title">NoteAI</h1>
+            <h3 id="welcomeHome">Welcome!</h3>
+            <button id="logout" onClick={logout}>
+                <img height="25px" width="25px" src="src/assets/logout.png"></img>
+            </button>
         </div>
         <div className="content">
-            <button onClick={() => setPage("Note")}>New Notes</button>
-            <table>
+            <table id="notes">
                 <thead>
                     <tr>
                         <th>Name</th>
@@ -41,9 +41,10 @@ export default function Home({user, logout, setPage, setNoteID}) {
                         key={note.id}></NoteListing>)}
                 </tbody>
             </table>
+            <button id="newNote" onClick={() => setPage("Note")}>New Note</button>
         </div>
-        <div className="cards">
+        {/* <div className="cards">
             <p>cards</p>
-        </div>
+        </div> */}
     </>
 }

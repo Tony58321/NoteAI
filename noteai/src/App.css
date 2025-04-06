@@ -22,3 +22,8 @@ button {
 button:hover {
     box-shadow: inset 1px 1px 5px rgba(0,0,0,0.2);
 }
+
+input::placeholder {
+    font-family: 'Poppins', sans-serif;
+    font-weight: 300;
+}

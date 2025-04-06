@@ -29,21 +29,21 @@ export default function Login({ setUser, setPage }) {
       <h1 id="title">NoteAI</h1>
       <h2 id="loginHeader">Login</h2>
       <div id="loginInfoContainer">
-        <label className="inputLabel" htmlFor='username'>Username</label>
+        <label className="inputLabel" htmlFor='username'>Email</label>
         <br />
-        <input type='text' name='username' id='usernameInput' value={email} onChange={(e) => setEmail(e.target.value)}></input>
+        <input placeholder="Enter your email" type='text' name='username' id='usernameInput' value={email} onChange={(e) => setEmail(e.target.value)}></input>
         <br />
         <label className="inputLabel" htmlFor='password'>Password</label>
         <br />
-        <input type='text' name='password' id='passwordInput' value={password} onChange={(e) => setPassword(e.target.value)}></input>
+        <input placeholder="Enter your password" type='text' name='password' id='passwordInput' value={password} onChange={(e) => setPassword(e.target.value)}></input>
       </div>
 
-      <button onClick={handleLogin}>Log in</button>
+      <button id="loginButton" onClick={handleLogin}>Log In</button>
 
       <br /><br />
 
-      <p> New User? </p>
-      <button onClick={() => setPage("Signup")}>Create Account</button>
+      <p>New User?</p>
+      <button id="createAccount" onClick={() => setPage("Signup")}>Create Account</button>
       <br /><br />
 
       {/* <label htmlFor='aiprompt'>prompt</label>

@@ -74,6 +74,7 @@ p {
 #editorContainer {
 
     margin: 20px;
+    margin-top: 15vh;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -108,6 +109,15 @@ p {
     border: none;
 }
 
+#homeButton:hover {
+    box-shadow: none;
+}
+
+#homeButton:hover img {
+    height: 27px;
+    width: 27px;
+}
+
 #noteTitle {
     margin-top: 8vh;
     font-weight: 500;
@@ -120,11 +130,11 @@ p {
 
 #save {
 
-    width: 65px;
-    margin: 15px;
+    width: 75px;
+    height: 40px;
+    margin: 20px;
     padding: 5px;
     border: none;
-    border-radius: 4px;
     font-family: 'Poppins', sans-serif;
     font-size: 15px;
     background-color: #f1f1f1;
@@ -150,6 +160,8 @@ p {
     border-radius: 4px;
     background-color: #f1f1f1;
     font-family: 'Poppins', sans-serif;
+    font-size: 14px;
+    font-weight: 400;
 }
 
 .editorButton2:hover {
@@ -180,18 +192,44 @@ p {
     justify-content: center;
     align-items: center;
     flex-direction: column;
-    width: 60vw;
-    height: 40vh;
+    width: 25vw;
     background-color: #f1f1f1;
     border-radius: 5px;
     position: absolute;
-    top: 10%;
-    left: 50%;
-    transform: translate(-50%);
+    top: 45%;
+    left: 72%;
 }
 
 #aiInput {
-    margin: 5px;
+    margin: 0;
     padding: 10px;
-    width: 50vw;
+    width: 20vw;
+}
+
+input {
+    font-family: "Poppins", sans-serif;
+}
+
+.tiptap p.is-editor-empty:first-child::before {
+    color: #adb5bd;
+    content: attr(data-placeholder);
+    float: left;
+    height: 0;
+    font-family: 'Poppins', sans-serif;
+    font-weight: 300;
+}
+
+#askGroq {
+    margin: 15px;
+}
+
+#generate {
+    margin: 15px;
+    padding: 0;
+    background-color: black;
+    color: white;
+    font-size: 14px;
+    font-weight: 400;
+    width: 125px;
+    height: 30px;
 }
