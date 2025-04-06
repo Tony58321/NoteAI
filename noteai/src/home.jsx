@@ -31,11 +31,13 @@ export default function Home({user, logout, setPage, setNoteID}) {
                         <th>Name</th>
                         <th>Category</th>
                         <th>Creation Date</th>
+                        <th>Flash Cards</th>
                     </tr>
                 </thead>
                 <tbody>
                     {notes.map(note => <NoteListing note={note}
-                        setNote={note => {setNoteID(note); setPage("Note")}}
+                        setNote={setNoteID}
+                        setPage={setPage}
                         key={note.id}></NoteListing>)}
                 </tbody>
             </table>

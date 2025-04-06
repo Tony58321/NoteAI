@@ -22,8 +22,6 @@ export default async function callGroq(inputString){
 export async function generateQuiz(user_notes){
 
 
-user_notes = "insert long notes here";
-
 let instructions = "You are going to generate a flashcard quiz in the following format. For each question write a division bar like this write before starting the question: " 
 + "/-----------------------------------------------------------------------/"
 + " Then write the question. After the question write another sub-division line like this: " 

@@ -33,8 +33,7 @@ function App() {
   } else if (page == "Note") {
     return <Note setPage={setPage} noteID={noteID}/>;
   }else if(page == "FlashCards"){
-    return <FlashCards/>;
-
+    return <FlashCards noteID={noteID} setPage={setPage}/>;
   }
   else {
     return <Home user={user} logout={() => setUser(null)} setPage={setPage} setNoteID={setNoteID}/>;
