@@ -22,9 +22,4 @@ export default async function getNotes() {
     // get data from notes collection
     const snaps = await getDocs(query(collection(db, "notes"), where("userId", "!=", true)));
     return snaps.docs.map(doc => doc.data());
-    
-    return [
-        {name: "note1", category: "cs xxx", date: "4-5-2025"},
-        {name: "planets", category: "Holst", date: "9-29-1918"},
-    ];
 }

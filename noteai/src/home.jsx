@@ -8,7 +8,6 @@ export default function Home({user, logout, setPage}) {
     if (notes.length == 0) {
         getNotes().then(fetchedNotes => setNotes(fetchedNotes));
     }
-    console.log(notes);
     return <>
         <div className="menu">
             <button disabled>Home</button>
