@@ -9,6 +9,7 @@ export default function Quiz({noteID, setPage}) {
     const [quizName, setQuizName] = useState("");
     const [curQuest, setCurQuest] = useState(0);
     const [questState, setQuestState] = useState("show");
+    const [lastResponse, setLastResponse] = useState("");
     useEffect(() => {
         getNoteData(noteID).then(data => {
             setQuizName(`Quiz on ${data.name}`)
@@ -20,10 +21,17 @@ export default function Quiz({noteID, setPage}) {
     const submitAnswer = async () => {
         setQuestState("submitting");
         // call groq to check if answer is correct
-        GroqQuestCheck(questions[curQuest].question, document.getElementById("answer"), questions[curQuest].answer);
+        GroqQuestCheck(questions[curQuest].question, document.getElementById("answer").value, questions[curQuest].answer)
+            .then(response => {
+                setQuestState("graded");
+                setLastResponse(response);
+            });
     }
 
     const nextQuestion = () => {
+        if (curQuest + 1 >= questions.length) {
+            setQuestions("Quiz complete.")
+        }
         setQuestState("show");
         setCurQuest(curQuest + 1);
     }
@@ -40,13 +48,15 @@ export default function Quiz({noteID, setPage}) {
         :
         <>
             <p>{questions[curQuest].question}</p>
-            {questState == "show" || questState == "submitting" ?
+            {questState == "show" || questState == "submitting" || questState == "graded"?
                 <>
-                    <input type="text" disabled={questState != "show"}></input>
-                    <button onClick={submitAnswer} disabled={questState != "show"}>
+                    <input type="text" disabled={questState != "show"} key={curQuest} id="answer"></input>
+                    <button onClick={submitAnswer} disabled={questState != "show"} hidden={questState == "graded"}>
                         {questState == "show" ? "Submit" : "Loading..."}
                     </button>
-                    <button onClick={() => setQuestState("answer")} disabled={questState != "show"}>Show Answer</button>
+                    <p hidden={questState != "graded"}>{lastResponse}</p>
+                    <button onClick={() => setQuestState("answer")} disabled={questState != "show"} hidden={questState == "graded"}>Show Answer</button>
+                    <button onClick={nextQuestion} hidden={questState != "graded"}>Continue</button>
                 </>
             : questState == "answer" ?
                 <>

@@ -15,6 +15,5 @@ export default async function GroqQuestCheck(question, answer, reference) {
         
         Here is the reference answer: ${reference}`;
     let response = await askGroqPrompt(prompt);
-    console.log("asking groq")
     return response;
 }
