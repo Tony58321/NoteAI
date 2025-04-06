@@ -5,6 +5,9 @@ import TextStyle from '@tiptap/extension-text-style';
 import Color from '@tiptap/extension-color';
 import Underline from '@tiptap/extension-underline';
 import FontFamily from '@tiptap/extension-font-family';
+import { saveNotesToFirebase } from '../utilities/saveNotes';
+import { getAuth } from 'firebase/auth';
+
 import './Note.css'
 
 const FONTS = {
@@ -30,6 +33,29 @@ const COLORS = {
 
 export default function Note({setPage}) {
 
+    // Function to save notes to Firebase Firestore
+    // CAN BE DELETED LATER WHEN WE HAVE A REAL NOTE
+    // ---------------------------------------------------------------------------------
+    const handleSave = async () => {
+        const user = getAuth().currentUser;
+    
+        if (!user) {
+          alert("You must be logged in.");
+          return;
+        }
+    
+        const content = '<p>Start taking notes here...</p>'; // your placeholder
+    
+        try {
+            const id = await saveNotesToFirebase(user.uid, content, 'html');
+            alert("Saved note with ID: " + id);
+          } catch (e) {
+            alert("Error saving note: " + e.message);
+          }
+        };
+    // --------------------------------------------------------------------------------
+
+
     const editor = useEditor({
         extensions: [StarterKit, TextStyle, Color, Underline, FontFamily],
         content: '<p>Start taking notes here...</p>',
@@ -43,6 +69,11 @@ export default function Note({setPage}) {
     return (
         <>
             <h1 id="title">NoteAI</h1>
+        {/* TEST BUTTON CAN BE DELETED LATER */}
+            <h1>Notes Page</h1>
+            <button onClick={handleSave}>Save Placeholder Note</button>
+        {/*--------------------------------------------------------------  */}
+
             <button id="homeButton" onClick={() => setPage("Home")}>
                 <img src="/src/assets/backArrow.png" height="25px" width="25px"></img>
             </button>
