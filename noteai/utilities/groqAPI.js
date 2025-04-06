@@ -28,7 +28,8 @@ export async function passGroqPrompt(promptString){
         content: promptString,
       },
     ],
-    model: "llama-3.3-70b-versatile",
+    //model: "llama-3.3-70b-versatile",
+    model: "gemma2-9b-it",
   });
 
 }
