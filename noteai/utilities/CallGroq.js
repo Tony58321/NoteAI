@@ -55,7 +55,7 @@ let answerString = "";
 for (let i = 0; i < lines.length; i++) {
 
 
-  if (lines[i] == "/-----------------------------------------------------------------------/" ){
+  if (lines[i].startsWith("/---") ){
 
     //Record previous Q+A combo before starting
     if(questionString != ""){
@@ -74,7 +74,7 @@ for (let i = 0; i < lines.length; i++) {
     answerString = "";
     continue;
   }
-  else if(lines[i] =="*******************" ){
+  else if(lines[i].startsWith("***")){
     questionSavingMode = false;
     answerString = "";
     continue;

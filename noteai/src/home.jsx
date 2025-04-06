@@ -41,7 +41,10 @@ export default function Home({user, logout, setPage, setNoteID}) {
                         key={note.id}></NoteListing>)}
                 </tbody>
             </table>
-            <button id="newNote" onClick={() => setPage("Note")}>New Note</button>
+            <button id="newNote" onClick={() => {
+                setPage("Note");
+                setNoteID("");  // clear previous note id
+                }}>New Note</button>
         </div>
         {/* <div className="cards">
             <p>cards</p>
