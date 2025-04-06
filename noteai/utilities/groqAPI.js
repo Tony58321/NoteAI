@@ -14,8 +14,9 @@ export async function askGroqPrompt(promptString){
 
   const chatCompletion = await passGroqPrompt(promptString);
   // Print the completion returned by the LLM.
-  console.log(chatCompletion.choices[0]?.message?.content || "");
+  //console.log(chatCompletion.choices[0]?.message?.content || "");
 
+  return (chatCompletion.choices[0]?.message?.content || "");
 }
 
 export async function passGroqPrompt(promptString){
