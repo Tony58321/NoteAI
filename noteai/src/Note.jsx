@@ -80,8 +80,8 @@ export default function Note({ setPage, noteID }) {
 
 
     const editor = useEditor({
-        extensions: [StarterKit, TextStyle, Color, Underline, FontFamily, Placeholder.configure({placeholder: 'Enter your notes here ...',})],
-        content:  "",
+        extensions: [StarterKit, TextStyle, Color, Underline, FontFamily, Placeholder.configure({ placeholder: 'Enter your notes here ...', })],
+        content: "",
     });
 
     // set the font to the default
@@ -103,14 +103,14 @@ export default function Note({ setPage, noteID }) {
     // if currently fetching note data
     if (noteID && !noteData) {
         return <>
-            <h1 id="title">NoteAI</h1>
+            <h1 id="title">memo</h1>
             <p>Loading...</p>
         </>;
     }
 
     return (
         <>
-            <h1 id="title">NoteAI</h1>
+            <h1 id="title">memo</h1>
 
             <button id="homeButton" onClick={() => setPage("Home")}>
                 <img src="/src/assets/backArrow.png" height="25px" width="25px"></img>
@@ -187,8 +187,9 @@ export default function Note({ setPage, noteID }) {
                                 editor.chain().focus().setParagraph().run()
                             }
                             else {
-                                editor.chain().focus().toggleHeading({ level : parseInt(e.target.value)}).run()
-                            }}}
+                                editor.chain().focus().toggleHeading({ level: parseInt(e.target.value) }).run()
+                            }
+                        }}
                         defaultValue={""}>
                         <option value="">Paragraph</option>
                         {Object.keys(HEADINGS).map(heading => <option value={HEADINGS[heading]} key={heading}>{heading}</option>)}
@@ -198,24 +199,24 @@ export default function Note({ setPage, noteID }) {
                     <button
                         onClick={() => editor.chain().focus().toggleCodeBlock().run()}
                         className={editor.isActive('codeBlock') ? 'isActive2' : 'editorButton2'}>
-                    Code</button>
+                        Code</button>
 
                     <button
                         onClick={() => editor.chain().focus().setHorizontalRule().run()}
                         className={editor.isActive('codeBlock') ? 'isActive2' : 'editorButton2'}>
-                    Line Break</button>
+                        Line Break</button>
 
                     <button
                         onClick={() => {
                             if (document.getElementById("aiGen").classList.contains("hidden")) {
-                                document.getElementById("aiGen").classList.replace("hidden","visible")
+                                document.getElementById("aiGen").classList.replace("hidden", "visible")
                             }
                             else {
-                                document.getElementById("aiGen").classList.replace("visible","hidden")
+                                document.getElementById("aiGen").classList.replace("visible", "hidden")
                             }
-                            }}
+                        }}
                         className="editorButton2">
-                    AI Notes</button>
+                        AI Notes</button>
 
                 </div>
 
@@ -238,9 +239,17 @@ export default function Note({ setPage, noteID }) {
                 <div className="editor">
                     <EditorContent editor={editor} />
                 </div>
-                <button id="save"
-                    onClick={handleSave}
-                >Save</button>
+                <div id="buttons">
+                    <button id="save"
+                        onClick={handleSave}
+                    >Save</button>
+                    <button id="flashcards"
+                        onClick={() => setPage("FlashCards")}
+                    >Flashcards</button>
+                    <button id="quiz"
+                        onClick={() => setPage("Quiz")}
+                    >Quiz</button>
+                </div>
             </div>
         </>
     )

@@ -26,7 +26,7 @@ export default function Login({ setUser, setPage }) {
 
   return (
     <>
-      <h1 id="title">NoteAI</h1>
+      <h1 id="title">memo</h1>
       <h2 id="loginHeader">Login</h2>
       <div id="loginInfoContainer">
         <label className="inputLabel" htmlFor='username'>Email</label>
