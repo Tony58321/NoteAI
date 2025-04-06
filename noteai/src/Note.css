@@ -100,17 +100,15 @@ p {
     height: 30px;
     width: 30px;
     margin: 5px;
-    top: 5px;
-    left: 5px;
+    top: 15px;
+    right: 15px;
     padding: 0;
     background-color: #ffffff;
     border: none;
 }
 
 #noteTitle {
-
-    align-self: baseline;
-    transform: translate(40%);
+    margin-top: 8vh;
     font-weight: 500;
 }
 
