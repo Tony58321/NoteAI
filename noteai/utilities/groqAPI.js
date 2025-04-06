@@ -29,7 +29,9 @@ export async function passGroqPrompt(promptString){
       },
     ],
     //model: "llama-3.3-70b-versatile",
-    model: "gemma2-9b-it",
+    //model: "gemma2-9b-it",
+    model: "llama-3.3-70b-specdec",
+    
   });
 
 }
