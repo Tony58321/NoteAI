@@ -10,7 +10,10 @@ export default async function callGroq(inputString ){
     //console.log(result);
 
 
-    await generateQuiz();
+    //returns the generated flash cards
+    let quizCards = await generateQuiz()
+    console.log(quizCards);
+    return (quizCards);
 }
 
 
@@ -63,12 +66,6 @@ for (let i = 0; i < lines.length; i++) {
         answer: answerString
       };
       quizQuestionArray.push(cardItem);
-
-      //console.log(questionString);
-      //console.log(answerString);
-
-      //quizQuestionArray.push()
-
     }
 
 
@@ -91,8 +88,7 @@ for (let i = 0; i < lines.length; i++) {
   else{
     answerString += lines[i];
   } 
-  
-  //console.log(`Line ${i + 1}: ${lines[i]}`);
+
 }
 //record last trailing Q+A combo 
 let cardItem = {
@@ -102,6 +98,7 @@ let cardItem = {
 quizQuestionArray.push(cardItem);
 
 console.log(quizQuestionArray);
+return quizQuestionArray;
 
 
 }
