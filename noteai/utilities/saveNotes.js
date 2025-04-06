@@ -13,6 +13,8 @@ export async function saveNotesToFirebase(userId, content, format = 'html') {
 
     const noteData = {
       userId,
+      name: "",
+      category: "",
       createdAt: serverTimestamp(),
     };
 
