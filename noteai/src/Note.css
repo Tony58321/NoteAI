@@ -118,16 +118,6 @@ p {
     width: 27px;
 }
 
-#noteTitle {
-    margin-top: 8vh;
-    font-weight: 500;
-}
-
-#categoryTitle {
-    margin-top: 8vh;
-    font-weight: 500;
-}
-
 #save {
 
     width: 75px;
@@ -177,6 +167,8 @@ p {
     border-radius: 4px;
     background-color: #f1f1f1;
     font-family: 'Poppins', sans-serif;
+    font-size: 14px;
+    font-weight: 400;
     box-shadow: inset 1px 1px 5px rgba(0, 0, 0, 0.2);
 }
 
@@ -274,11 +266,12 @@ input {
 }
 
 #noteNameInput {
-    width: 400px;
+    margin-top: 4vh;
+    width: 500px;
     align-self: first baseline;
 }
 
 #noteCategoryInput {
-    width: 400px;
+    width: 500px;
     align-self: first baseline;
 }

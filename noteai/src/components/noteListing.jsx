@@ -3,7 +3,5 @@ export default function noteListing({note, setNote, setPage}) {
         <td onClick={() => setPage("Note")}>{note.name}</td>
         <td onClick={() => setPage("Note")}>{note.category}</td>
         <td onClick={() => setPage("Note")}>{(new Date(note.createdAt.seconds*1000)).toLocaleDateString()}</td>
-        <td onClick={() => setPage("FlashCards")}>Review</td>
-        <td onClick={() => setPage("Quiz")}>Quiz</td>
     </tr>
 }

@@ -103,14 +103,14 @@ export default function Note({ setPage, noteID }) {
     // if currently fetching note data
     if (noteID && !noteData) {
         return <>
-            <h1 id="title">NoteAI</h1>
+            <h1 id="title">memo</h1>
             <p>Loading...</p>
         </>;
     }
 
     return (
         <>
-            <h1 id="title">NoteAI</h1>
+            <h1 id="title">memo</h1>
 
             <button id="homeButton" onClick={() => setPage("Home")}>
                 <img src="/src/assets/backArrow.png" height="25px" width="25px"></img>
@@ -244,8 +244,10 @@ export default function Note({ setPage, noteID }) {
                         onClick={handleSave}
                     >Save</button>
                     <button id="flashcards"
+                        onClick={() => setPage("FlashCards")}
                     >Flashcards</button>
                     <button id="quiz"
+                        onClick={() => setPage("Quiz")}
                     >Quiz</button>
                 </div>
             </div>
