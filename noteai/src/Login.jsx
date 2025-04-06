@@ -35,7 +35,7 @@ export default function Login({ setUser, setPage }) {
         <br />
         <label className="inputLabel" htmlFor='password'>Password</label>
         <br />
-        <input placeholder="Enter your password" type='text' name='password' id='passwordInput' value={password} onChange={(e) => setPassword(e.target.value)}></input>
+        <input placeholder="Enter your password" type='password' name='password' id='passwordInput' value={password} onChange={(e) => setPassword(e.target.value)}></input>
       </div>
 
       <button id="loginButton" onClick={handleLogin}>Log In</button>
