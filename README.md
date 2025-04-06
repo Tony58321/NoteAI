@@ -1,9 +1,4 @@
-# NoteAI
-
-Name ideas:
-QuizNote
-SmartNote.Quiz
-SmartNote
+# memo
 
 
 # Target Audience:
