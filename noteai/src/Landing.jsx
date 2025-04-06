@@ -9,6 +9,8 @@ export default function Landing({setLoginPage}) {
             <button id="toLogin"
                 onClick={setLoginPage}
             >Get Started</button>
+
+            <div id= "blackSquare"></div>
         </>
     )
 }

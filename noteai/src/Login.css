@@ -19,12 +19,13 @@ body {
     margin: 10px;
     margin-top: 20vh;
     padding: 0;
-    font-size: 25px;
+    font-size: 30px;
     font-weight: 600;
 }
 
 #loginInfoContainer {
     text-align: left;
+    width: 400px;
 }
 
 input {
@@ -36,4 +37,12 @@ input {
     border: none;
     border-radius: 5px;
     box-shadow: inset 1px 1px 5px rgba(0, 0, 0, 0.2);
+    font-size: 16px;
+}
+
+p {
+    font-size: 16px;
+    font-weight: 400;
+    margin: 0;
+    padding: 0;
 }

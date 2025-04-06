@@ -46,9 +46,9 @@ export default function Login({ setUser, setPage }) {
       <button onClick={() => setPage("Signup")}>Create Account</button>
       <br /><br />
 
-      <label htmlFor='aiprompt'>prompt</label>
+      {/* <label htmlFor='aiprompt'>prompt</label>
       <input type='text' name='aiprompt' id='aiprompt'></input>
-      <button onClick={() => callGroq(document.getElementById("aiprompt").value)}>Call Groq</button>
+      <button onClick={() => callGroq(document.getElementById("aiprompt").value)}>Call Groq</button> */}
     </>
   )
 }
