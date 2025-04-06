@@ -1,0 +1,89 @@
+p {
+    margin: 0;
+    padding: 0;
+}
+
+.editorButton {
+
+    width: 30px;
+    height: 30px;
+    margin: 5px;
+    padding: 5px;
+    border: none;
+    border-radius: 3px;
+    background-color: #f1f1f1;
+    font-size: 16px;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+}
+
+.editorButton:hover {
+
+    background-color: #e5e5e5;
+}
+
+.isActive {
+
+    width: 30px;
+    height: 30px;
+    margin: 5px;
+    padding: 5px;
+    border: none;
+    background-color: #f1f1f1;
+    border-radius: 3px;
+    box-shadow: inset 1px 1px 5px rgba(0, 0, 0, 0.2);
+    font-size: 16px;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+}
+
+#bold {
+    font-weight: 600;
+}
+
+#italic {
+
+    font-style: italic;
+}
+
+#underline {
+    text-decoration: underline;
+}
+
+.selectMenu {
+
+    width: 75px;
+    height: 30px;
+    margin: 5px;
+    padding: 5px;
+
+    border: none;
+    border-radius: 3px;
+    background-color: #f1f1f1;
+    
+}
+
+.selectMenu:hover {
+
+    background-color: #e5e5e5;
+}
+
+#editorContainer {
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.editor {
+
+    height: 70vh;
+    width: 80vw;
+    padding: 15px;
+    border-style: solid;
+    border-width: 1px;
+    border-radius: 3px;
+}
+
+.ProseMirror:focus {
+    outline: none;
+}

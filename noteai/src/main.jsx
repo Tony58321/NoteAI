@@ -5,6 +5,7 @@ import Login from './Login.jsx'
 import Note from './Note.jsx'
 
 createRoot(document.getElementById('root')).render(
+  
   <StrictMode>
     <App/>
   </StrictMode>,
