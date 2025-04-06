@@ -113,7 +113,7 @@ export default function Note({ setPage, noteID }) {
             <h1 id="title">memo</h1>
 
             <button id="homeButton" onClick={() => setPage("Home")}>
-                <img src="/src/assets/backArrow.png" height="25px" width="25px"></img>
+                <img src="/public/backArrow.png" height="25px" width="25px"></img>
             </button>
             {/* <button>Review Notes</button> */}
 

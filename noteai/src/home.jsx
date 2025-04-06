@@ -20,7 +20,7 @@ export default function Home({user, logout, setPage, setNoteID}) {
             <h1 id="title">memo</h1>
             <h3 id="welcomeHome">Welcome!</h3>
             <button id="logout" onClick={logout}>
-                <img height="25px" width="25px" src="src/assets/logout.png"></img>
+                <img height="25px" width="25px" src="public/logout.png"></img>
             </button>
         </div>
         <div className="content">

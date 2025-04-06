@@ -109,7 +109,7 @@ export default function FlashCards({noteID, setPage}){
         <>
         <h1 id="title">memo</h1>
         <button id="homeButton" onClick={() => setPage("Home")}>
-            <img src="/src/assets/backArrow.png" height="25px" width="25px"></img>
+            <img src="/public/backArrow.png" height="25px" width="25px"></img>
         </button>
         <h1>Flashcards</h1>
 
