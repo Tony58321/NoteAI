@@ -26,12 +26,15 @@ export default function Login({ setUser }) {
 
   return (
     <>
-      <h1>Login</h1>
+      <h1 id="title">NoteAI</h1>
+      <h2 id="loginHeader">Login</h2>
       <div id="loginInfoContainer">
-        <label for='username'>Username</label>
+        <label className="inputLabel" for='username'>Username</label>
+        <br />
         <input type='text' name='username' id='usernameInput' value={email} onChange={(e) => setEmail(e.target.value)}></input>
         <br />
-        <label for='password'>Password</label>
+        <label className="inputLabel" for='password'>Password</label>
+        <br />
         <input type='text' name='password' id='passwordInput' value={password} onChange={(e) => setPassword(e.target.value)}></input>
       </div>
 
