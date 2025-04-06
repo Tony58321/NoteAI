@@ -12,7 +12,10 @@ function App() {
   // if user is defined (and validated?)
 
   if (page == "Login") {
-    return <Login/>
+    return <Login setUser={user => {
+      setUser(user);
+      setPage("Home");
+    }}/>
   }
   else if (!user) {
     return <Landing setLoginPage={() => setPage("Login")}/>;
