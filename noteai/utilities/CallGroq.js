@@ -3,7 +3,7 @@ import { simpleGroqQuestion, askGroqPrompt  } from './groqAPI.js';
 
 
 /*function calls groq with an input string prompt.*/
-export default async function callGroq(inputString ){
+export default async function callGroq(inputString){
 
 
     //let result = await askGroqPrompt(inputString);
@@ -15,6 +15,7 @@ export default async function callGroq(inputString ){
     console.log(quizCards);
     return (quizCards);
 }
+
 
 
 

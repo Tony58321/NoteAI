@@ -7,8 +7,8 @@ import { useState } from 'react'
 
 export default function Login({ setUser }) {
 
-  const [email, setEmail] = useState(import.meta.env.DEFAULT_USER); // Initialize email state
-  const [password, setPassword] = useState(import.meta.env.DEFAULT_PASS); // Initialize password state
+  const [email, setEmail] = useState(import.meta.env.VITE_DEFAULT_USER); // Initialize email state
+  const [password, setPassword] = useState(import.meta.env.VITE_DEFAULT_PASS); // Initialize password state
 
   // const navigate = useNavigate(); // Might use this for navigation after login
 
@@ -29,11 +29,11 @@ export default function Login({ setUser }) {
       <h1 id="title">NoteAI</h1>
       <h2 id="loginHeader">Login</h2>
       <div id="loginInfoContainer">
-        <label className="inputLabel" for='username'>Username</label>
+        <label className="inputLabel" htmlFor='username'>Username</label>
         <br />
         <input type='text' name='username' id='usernameInput' value={email} onChange={(e) => setEmail(e.target.value)}></input>
         <br />
-        <label className="inputLabel" for='password'>Password</label>
+        <label className="inputLabel" htmlFor='password'>Password</label>
         <br />
         <input type='text' name='password' id='passwordInput' value={password} onChange={(e) => setPassword(e.target.value)}></input>
       </div>
@@ -44,7 +44,7 @@ export default function Login({ setUser }) {
 
       <br /><br />
 
-      <label for='aiprompt'>prompt</label>
+      <label htmlFor='aiprompt'>prompt</label>
       <input type='text' name='aiprompt' id='aiprompt'></input>
       <button onClick={() => callGroq(document.getElementById("aiprompt").value)}>Call Groq</button>
     </>

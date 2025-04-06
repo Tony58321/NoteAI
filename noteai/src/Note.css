@@ -56,7 +56,7 @@ p {
 
 .selectMenu {
 
-    width: 75px;
+    width: 100px;
     height: 30px;
     margin: 5px;
     padding: 5px;
@@ -81,6 +81,7 @@ p {
 }
 
 .editor {
+    text-align: left;
     margin-top: 15px;
     width: 85vw;
     padding: 20px;
@@ -133,4 +134,59 @@ p {
     display: flex;
     align-items: center;
     justify-content: center;
+}
+
+.editorButton2 {
+    width: 100px;
+    height: 30px;
+    margin: 5px;
+    padding: 5px;
+    border: none;
+    border-radius: 4px;
+    background-color: #f1f1f1;
+    font-family: 'Poppins', sans-serif;
+}
+
+.editorButton2:hover {
+    background-color: #e5e5e5;
+}
+
+.isActive2 {
+    width: 100px;
+    height: 30px;
+    margin: 5px;
+    padding: 5px;
+    border: none;
+    border-radius: 4px;
+    background-color: #f1f1f1;
+    font-family: 'Poppins', sans-serif;
+    box-shadow: inset 1px 1px 5px rgba(0, 0, 0, 0.2);
+}
+
+.hidden {
+    display: none;
+}
+
+.visible {
+    display: flex;
+}
+
+#aiGen {
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    width: 60vw;
+    height: 40vh;
+    background-color: #f1f1f1;
+    border-radius: 5px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+}
+
+#aiInput {
+    margin: 5px;
+    padding: 10px;
+    width: 50vw;
 }

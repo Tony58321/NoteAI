@@ -9,8 +9,10 @@ import { saveNotesToFirebase } from '../utilities/saveNotes';
 import { getAuth } from 'firebase/auth';
 
 import './Note.css'
+import { askGroqPrompt } from '../utilities/groqAPI';
 
 const FONTS = {
+    "Poppins": '"Poppins", "san-serif"',
     "Arial": '"Arial", "sans-serif"',
     "Brush Script": '"Brush Script MT", "Brush Script Std", "cursive"',
     "Comic Sans": '"Comic Sans MS", "Comic Sans"',
@@ -29,6 +31,15 @@ const COLORS = {
     "Purple": "#EE82EE",
     "Pink": "#FF69B4",
     "Grey": "#808080",
+}
+
+const HEADINGS = {
+    "Heading 1": 1,
+    "Heading 2": 2,
+    "Heading 3": 3,
+    "Heading 4": 4,
+    "Heading 5": 5,
+    "Heading 6": 6
 }
 
 export default function Note({ setPage }) {
@@ -58,7 +69,6 @@ export default function Note({ setPage }) {
 
     const editor = useEditor({
         extensions: [StarterKit, TextStyle, Color, Underline, FontFamily],
-        content: '<p>Start taking notes here...</p>',
     });
 
     // set the font to the default
@@ -117,19 +127,79 @@ export default function Note({ setPage }) {
                         }
                         className={editor.isActive('underline') ? 'is-active' : 'editorButton'}
                     >U</button>
+
+
                     <select
                         className="selectMenu"
                         onChange={(e) => editor.chain().focus().setColor(e.target.value).run()}
                         defaultValue="">
                         {Object.keys(COLORS).map(color => <option value={COLORS[color]} style={{ color: color }} key={color}>{color}</option>)}
                     </select>
+
+
                     <select
                         className="selectMenu"
                         onChange={(e) => editor.chain().focus().setFontFamily(e.target.value).run()}
                         defaultValue={Object.keys(FONTS)[0]}>
                         {Object.keys(FONTS).map(font => <option value={FONTS[font]} style={{ fontFamily: FONTS[font] }} key={font}>{font}</option>)}
                     </select>
+
+
+                    <select
+                        className="selectMenu"
+                        onChange={(e) => {
+                            if (e.target.value == "") {
+                                editor.chain().focus().setParagraph().run()
+                            }
+                            else {
+                                editor.chain().focus().toggleHeading({ level : parseInt(e.target.value)}).run()
+                            }}}
+                        defaultValue={""}>
+                        <option value="">Paragraph</option>
+                        {Object.keys(HEADINGS).map(heading => <option value={HEADINGS[heading]} key={heading}>{heading}</option>)}
+                    </select>
+
+
+                    <button
+                        onClick={() => editor.chain().focus().toggleCodeBlock().run()}
+                        className={editor.isActive('codeBlock') ? 'isActive2' : 'editorButton2'}>
+                    Code</button>
+
+                    <button
+                        onClick={() => editor.chain().focus().setHorizontalRule().run()}
+                        className={editor.isActive('codeBlock') ? 'isActive2' : 'editorButton2'}>
+                    Line Break</button>
+
+                    <button
+                        onClick={() => {
+                            if (document.getElementById("aiGen").classList.contains("hidden")) {
+                                document.getElementById("aiGen").classList.replace("hidden","visible")
+                            }
+                            else {
+                                document.getElementById("aiGen").classList.replace("visible","hidden")
+                            }
+                            }}
+                        className="editorButton2">
+                    AI Notes</button>
+
                 </div>
+
+                <div id="aiGen" className="hidden">
+                    <p>Ask Groq to generate your notes!</p>
+                    <label htmlFor="aiInput">Enter topic</label>
+                    <input id="aiInput"></input>
+                    <p id="loading" className="hidden">Loading</p>
+                    <button
+                        onClick={async () => {
+                            document.getElementById("loading").classList.toggle("hidden")
+                            let prompt = "Generate notes about this subject: " + document.getElementById("aiInput").value + " in HTML format ie using <p> tags, <h1>, <ul>, etc. Try to avoid giving information in paragraphs and prioritize bulleted lists of information."
+                            let result = await askGroqPrompt(prompt)
+                            editor.commands.insertContent(result)
+                            document.getElementById("aiGen").classList.replace("visible", "hidden")
+                        }}
+                    >Generate</button>
+                </div>
+
                 <div className="editor">
                     <EditorContent editor={editor} />
                 </div>
