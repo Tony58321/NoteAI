@@ -8,7 +8,8 @@ import FlashCards from './flashCards';
 
 function App() {
   const [user, setUser] = useState(null);
-  const [page, setPage] = useState("Home")
+  const [page, setPage] = useState("Home");
+  const [noteID, setNoteID] = useState("");
 
   // if user is defined (and validated?)
 
@@ -21,13 +22,13 @@ function App() {
   else if (!user) {
     return <Landing setLoginPage={() => setPage("Login")}/>;
   } else if (page == "Note") {
-    return <Note setPage={setPage}/>;
+    return <Note setPage={setPage} noteID={noteID}/>;
   }else if(page == "FlashCards"){
     return <FlashCards/>;
 
   }
   else {
-    return <Home user={user} logout={() => setUser(null)} setPage={setPage}/>;
+    return <Home user={user} logout={() => setUser(null)} setPage={setPage} setNoteID={setNoteID}/>;
   }
 }
 

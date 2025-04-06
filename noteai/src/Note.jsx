@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { useEditor, EditorContent } from '@tiptap/react';
 import StarterKit from '@tiptap/starter-kit';
 import TextStyle from '@tiptap/extension-text-style';
@@ -9,6 +9,7 @@ import { saveNotesToFirebase } from '../utilities/saveNotes';
 import { getAuth } from 'firebase/auth';
 
 import './Note.css'
+import getNoteData from '../utilities/getNoteData';
 import { askGroqPrompt } from '../utilities/groqAPI';
 
 const FONTS = {
@@ -33,6 +34,7 @@ const COLORS = {
     "Grey": "#808080",
 }
 
+
 const HEADINGS = {
     "Heading 1": 1,
     "Heading 2": 2,
@@ -42,7 +44,8 @@ const HEADINGS = {
     "Heading 6": 6
 }
 
-export default function Note({ setPage }) {
+export default function Note({ setPage, noteID }) {
+    const [noteData, setNoteData] = useState(null);
 
     // Function to save notes to Firebase Firestore
     // CAN BE DELETED LATER WHEN WE HAVE A REAL NOTE
@@ -55,10 +58,13 @@ export default function Note({ setPage }) {
             return;
         }
 
-        const content = '<p>Start taking notes here...</p>'; // your placeholder
+        const noteName = document.getElementById('noteNameInput').value;
+        const noteCategory = document.getElementById('noteCategoryInput').value;
+        console.log("note name:", noteName);
+        console.log("note category:", noteCategory);
 
         try {
-            const id = await saveNotesToFirebase(user.uid, editor.getHTML(), 'html');
+            const id = await saveNotesToFirebase(user.uid, noteName, noteCategory, editor.getHTML(), 'html');
             alert("Saved note with ID: " + id);
         } catch (e) {
             alert("Error saving note: " + e.message);
@@ -69,12 +75,32 @@ export default function Note({ setPage }) {
 
     const editor = useEditor({
         extensions: [StarterKit, TextStyle, Color, Underline, FontFamily],
+        content:  "",
     });
 
     // set the font to the default
     useEffect(() => {
         editor.chain().focus().setFontFamily(Object.keys(FONTS)[0]).run();
     }, []);
+
+    // set the font to the default
+    useEffect(() => {
+        if (noteID) {  // get data if id is defined
+            getNoteData(noteID).then(data => {
+                setNoteData(data);
+                editor.commands.clearContent();  // clear frame
+                editor.commands.insertContent(data.html);  // then input saved data
+            });
+        }
+    }, []);
+
+    // if currently fetching note data
+    if (noteID && !noteData) {
+        return <>
+            <h1 id="title">NoteAI</h1>
+            <p>Loading...</p>
+        </>;
+    }
 
     return (
         <>
@@ -84,8 +110,13 @@ export default function Note({ setPage }) {
                 <img src="/src/assets/backArrow.png" height="25px" width="25px"></img>
             </button>
             {/* <button>Review Notes</button> */}
+
+
             <div id="editorContainer">
-                <h2 id="noteTitle">Notes Page</h2>
+                <h2 id="noteTitle"> <label for='noteName'>Name</label> </h2>
+                <input type='text' name='noteName' id='noteNameInput' defaultValue={noteData ? noteData.name : ""}></input>
+                <h2 id ="categoryTitle"> <label for='noteCategory'>Category</label> </h2>
+                <input type='text' name='noteCategory' id='noteCategoryInput' defaultValue={noteData ? noteData.category : ""}></input>
                 <div id="editorOptions">
 
                     <button

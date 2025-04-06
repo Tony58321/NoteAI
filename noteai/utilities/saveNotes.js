@@ -3,7 +3,7 @@ import { db } from './firebase.js';
 
 // This function saves notes to Firebase Firestore
 // It takes a userId, content, and format (default is 'html') from Tiptap editor
-export async function saveNotesToFirebase(userId, content, format = 'html') {
+export async function saveNotesToFirebase(userId, name, category, content, format = 'html') {
   try {
     if (!userId) throw new Error('Missing user ID');
     if (!content) throw new Error('Missing note content');
@@ -13,8 +13,8 @@ export async function saveNotesToFirebase(userId, content, format = 'html') {
 
     const noteData = {
       userId,
-      name: "",
-      category: "",
+      name,
+      category,
       createdAt: serverTimestamp(),
     };
 
