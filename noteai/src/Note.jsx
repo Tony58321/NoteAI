@@ -1,16 +1,33 @@
-import { useEditor, EditorContent } from '@tiptap/react'
-import StarterKit from '@tiptap/starter-kit'
-import TextStyle from '@tiptap/extension-text-style'
-import Color from '@tiptap/extension-color'
-import Underline from '@tiptap/extension-underline'
+import { useEffect } from 'react';
+import { useEditor, EditorContent } from '@tiptap/react';
+import StarterKit from '@tiptap/starter-kit';
+import TextStyle from '@tiptap/extension-text-style';
+import Color from '@tiptap/extension-color';
+import Underline from '@tiptap/extension-underline';
+import FontFamily from '@tiptap/extension-font-family';
 import './Note.css'
+
+const FONTS = {
+    "Arial": '"Arial", "sans-serif"',
+    "Brush Script": '"Brush Script MT", "Brush Script Std", "cursive"',
+    "Comic Sans": '"Comic Sans MS", "Comic Sans"',
+    "Courier New": '"Courier New", "monospace"',
+    "Impact": '"Impact", "fantasy"',
+    "Times New Roman": '"Times", "Times New Roman", "serif"',
+};
 
 export default function Note({ setPage }) {
 
     const editor = useEditor({
-        extensions: [StarterKit, TextStyle, Color, Underline],
+        extensions: [StarterKit, TextStyle, Color, Underline, FontFamily],
         content: '<p>Start taking notes here...</p>',
-    })
+    });
+
+    // set the font to the default
+    useEffect(() => {
+        editor.chain().focus().setFontFamily(Object.keys(FONTS)[0]).run();
+        }, []);
+
     return (
         <>
             <h1 id="title">NoteAI</h1>
