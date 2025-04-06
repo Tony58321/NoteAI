@@ -1,5 +1,5 @@
 import { initializeApp } from 'firebase/app';
-import { getFirestore, collection, getDoc, query, where, doc } from 'firebase/firestore/lite';
+import { getFirestore, getDoc, doc } from 'firebase/firestore/lite';
 
 export default async function getNoteData(id) {
 
@@ -19,7 +19,6 @@ export default async function getNoteData(id) {
     const db = getFirestore(app);
 
 
-    //YRmAZvwaYcOUuiRQl2hb
     const snap = await getDoc(doc(db, "notes", id));
-    return snap.data;
+    return snap.data();
 }

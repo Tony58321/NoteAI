@@ -63,7 +63,7 @@ export default function Note({ setPage, noteID }) {
 
     const editor = useEditor({
         extensions: [StarterKit, TextStyle, Color, Underline, FontFamily],
-        content: '<p>Start taking notes here...</p>',
+        content:  "",
     });
 
     // set the font to the default
@@ -73,9 +73,22 @@ export default function Note({ setPage, noteID }) {
 
     // set the font to the default
     useEffect(() => {
-        console.log(`fetching${noteID}`)
-        //getNoteData(noteID).then(setNoteData);
+        if (noteID) {  // get data if id is defined
+            getNoteData(noteID).then(data => {
+                setNoteData(data);
+                editor.commands.clearContent();  // clear frame
+                editor.commands.insertContent(data.html);  // then input saved data
+            });
+        }
     }, []);
+
+    // if currently fetching note data
+    if (noteID && !noteData) {
+        return <>
+            <h1 id="title">NoteAI</h1>
+            <p>Loading...</p>
+        </>;
+    }
 
     return (
         <>
@@ -89,9 +102,9 @@ export default function Note({ setPage, noteID }) {
 
             <div id="editorContainer">
                 <h2 id="noteTitle"> <label for='noteName'>Name</label> </h2>
-                <input type='text' name='noteName' id='noteNameInput'></input>
+                <input type='text' name='noteName' id='noteNameInput' defaultValue={noteData ? noteData.name : ""}></input>
                 <h2 id ="categoryTitle"> <label for='noteCategory'>Category</label> </h2>
-                <input type='text' name='noteCategory' id='noteCategoryInput'></input>
+                <input type='text' name='noteCategory' id='noteCategoryInput' defaultValue={noteData ? noteData.category : ""}></input>
                 <div id="editorOptions">
 
                     <button
