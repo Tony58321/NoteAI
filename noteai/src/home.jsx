@@ -7,18 +7,18 @@ export default function Home({user, logout, setPage}) {
         {name: "planets", category: "holst", date: "9-29-1918"},
     ]
     return <>
-        <div class="menu">
+        <div className="menu">
             <button disabled>Home</button>
             <button>Quiz results</button>
             <button>Etc.</button>
         </div>
-        <div class="Banner">
+        <div className="Banner">
             <h1>NoteAI</h1>
             <h3>Slogan here</h3>
             <p>welcome, {String(user.email)}</p>
             <button onClick={logout}>Logout</button>
         </div>
-        <div class="content">
+        <div className="content">
             <button onClick={() => setPage("Note")}>New Notes</button>
             <table>
                 <thead>
@@ -33,7 +33,7 @@ export default function Home({user, logout, setPage}) {
                 </tbody>
             </table>
         </div>
-        <div class="cards">
+        <div className="cards">
             <p>cards</p>
         </div>
     </>

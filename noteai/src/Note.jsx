@@ -5,7 +5,7 @@ import Color from '@tiptap/extension-color'
 import Underline from '@tiptap/extension-underline'
 import './Note.css'
 
-export default function Note({setPage}) {
+export default function Note({ setPage }) {
 
     const editor = useEditor({
         extensions: [StarterKit, TextStyle, Color, Underline],
@@ -13,13 +13,15 @@ export default function Note({setPage}) {
     })
     return (
         <>
-            <button onClick={() => setPage("Home")}>Home</button>
             <h1 id="title">NoteAI</h1>
-            <button>Review Notes</button>
+            <button id="homeButton" onClick={() => setPage("Home")}>
+                <img src="/src/assets/backArrow.png" height="25px" width="25px"></img>
+            </button>
+            {/* <button>Review Notes</button> */}
             <div id="editorContainer">
                 <div id="editorOptions">
-                    
-                <button
+
+                    <button
                         onClick={() => editor.chain().focus().toggleBold().run()}
                         disabled={
                             !editor.can()
@@ -80,6 +82,9 @@ export default function Note({setPage}) {
                     <EditorContent editor={editor} />
                 </div>
             </div>
+            <button
+                onClick={() => console.log(editor.getHTML())}
+            >Save</button>
         </>
     )
 }
