@@ -44,10 +44,13 @@ export default function Note({ setPage }) {
             return;
         }
 
-        const content = '<p>Start taking notes here...</p>'; // your placeholder
+        const noteName = document.getElementById('noteNameInput').value;
+        const noteCategory = document.getElementById('noteCategoryInput').value;
+        console.log("note name:", noteName);
+        console.log("note category:", noteCategory);
 
         try {
-            const id = await saveNotesToFirebase(user.uid, editor.getHTML(), 'html');
+            const id = await saveNotesToFirebase(user.uid, noteName, noteCategory, editor.getHTML(), 'html');
             alert("Saved note with ID: " + id);
         } catch (e) {
             alert("Error saving note: " + e.message);
@@ -74,8 +77,13 @@ export default function Note({ setPage }) {
                 <img src="/src/assets/backArrow.png" height="25px" width="25px"></img>
             </button>
             {/* <button>Review Notes</button> */}
+
+
             <div id="editorContainer">
-                <h2 id="noteTitle">Notes Page</h2>
+                <h2 id="noteTitle"> <label for='noteName'>Name</label> </h2>
+                <input type='text' name='noteName' id='noteNameInput'></input>
+                <h2 id ="categoryTitle"> <label for='noteCategory'>Category</label> </h2>
+                <input type='text' name='noteCategory' id='noteCategoryInput'></input>
                 <div id="editorOptions">
 
                     <button

@@ -112,6 +112,11 @@ p {
     font-weight: 500;
 }
 
+#categoryTitle {
+    margin-top: 8vh;
+    font-weight: 500;
+}
+
 #save {
 
     width: 65px;
