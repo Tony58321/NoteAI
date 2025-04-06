@@ -7,8 +7,8 @@ import { useState } from 'react'
 
 export default function Login({ setUser }) {
 
-  const [email, setEmail] = useState(import.meta.env.DEFAULT_USER); // Initialize email state
-  const [password, setPassword] = useState(import.meta.env.DEFAULT_PASS); // Initialize password state
+  const [email, setEmail] = useState(import.meta.env.VITE_DEFAULT_USER); // Initialize email state
+  const [password, setPassword] = useState(import.meta.env.VITE_DEFAULT_PASS); // Initialize password state
 
   // const navigate = useNavigate(); // Might use this for navigation after login
 

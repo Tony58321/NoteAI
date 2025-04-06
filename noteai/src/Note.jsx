@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { useEditor, EditorContent } from '@tiptap/react';
 import StarterKit from '@tiptap/starter-kit';
 import TextStyle from '@tiptap/extension-text-style';
@@ -9,6 +9,7 @@ import { saveNotesToFirebase } from '../utilities/saveNotes';
 import { getAuth } from 'firebase/auth';
 
 import './Note.css'
+import getNoteData from '../utilities/getNoteData';
 
 const FONTS = {
     "Arial": '"Arial", "sans-serif"',
@@ -31,7 +32,8 @@ const COLORS = {
     "Grey": "#808080",
 }
 
-export default function Note({ setPage }) {
+export default function Note({ setPage, noteID }) {
+    const [noteData, setNoteData] = useState(null);
 
     // Function to save notes to Firebase Firestore
     // CAN BE DELETED LATER WHEN WE HAVE A REAL NOTE
@@ -67,6 +69,12 @@ export default function Note({ setPage }) {
     // set the font to the default
     useEffect(() => {
         editor.chain().focus().setFontFamily(Object.keys(FONTS)[0]).run();
+    }, []);
+
+    // set the font to the default
+    useEffect(() => {
+        console.log(`fetching${noteID}`)
+        //getNoteData(noteID).then(setNoteData);
     }, []);
 
     return (

@@ -1,7 +1,7 @@
 import { initializeApp } from 'firebase/app';
-import { getFirestore, collection, getDocs, query, where } from 'firebase/firestore/lite';
+import { getFirestore, collection, getDoc, query, where, doc } from 'firebase/firestore/lite';
 
-export default async function getNotes() {
+export default async function getNoteData(id) {
 
 
     // set up firebase/store
@@ -19,11 +19,7 @@ export default async function getNotes() {
     const db = getFirestore(app);
 
 
-    // get data from notes collection
-    const snaps = await getDocs(query(collection(db, "notes"), where("userId", "!=", true)));
-    return snaps.docs.map(doc => {
-        let data = doc.data();
-        data.id = doc.id;
-        return data;
-    });
+    //YRmAZvwaYcOUuiRQl2hb
+    const snap = await getDoc(doc(db, "notes", id));
+    return snap.data;
 }

@@ -3,7 +3,7 @@ import getNotes from "../utilities/getNotes";
 import { useState, useEffect } from "react";
 
 
-export default function Home({user, logout, setPage}) {
+export default function Home({user, logout, setPage, setNoteID}) {
     const [notes, setNotes] = useState([]);
     if (notes.length == 0) {
         getNotes().then(fetchedNotes => setNotes(fetchedNotes));
@@ -32,7 +32,9 @@ export default function Home({user, logout, setPage}) {
                     </tr>
                 </thead>
                 <tbody>
-                    {notes.map(note => <NoteListing note={note}></NoteListing>)}
+                    {notes.map(note => <NoteListing note={note}
+                        setNote={note => {setNoteID(note); setPage("Note")}}
+                        key={note.id}></NoteListing>)}
                 </tbody>
             </table>
         </div>
