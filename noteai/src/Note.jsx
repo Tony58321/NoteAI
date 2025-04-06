@@ -15,6 +15,18 @@ const FONTS = {
     "Times New Roman": '"Times", "Times New Roman", "serif"',
 };
 
+const COLORS = {
+    "Black": "",
+    "Red": "#FF0000",
+    "Orange": "#FFA500",
+    "Yellow": "#FFFF00",
+    "Green": "#008000",
+    "Blue": "#0000FF",
+    "Purple": "#EE82EE",
+    "Pink": "#FF69B4",
+    "Grey": "#808080",
+}
+
 export default function Note({setPage}) {
 
     const editor = useEditor({
@@ -72,19 +84,12 @@ export default function Note({setPage}) {
             <select
                 onChange={(e) => editor.chain().focus().setColor(e.target.value).run()}
                 defaultValue = "">
-                <option value="">Black</option>
-                <option value="#FF0000">Red</option>
-                <option value="#FFA500">Orange</option>
-                <option value="#FFFF00">Yellow</option>
-                <option value="#008000">Green</option>
-                <option value="#0000FF">Blue</option>
-                <option value="#EE82EE">Purple</option>
-                <option value="#FF69B4">Pink</option>
+                {Object.keys(COLORS).map(color => <option value={COLORS[color]} style={{color: color}} key={color}>{color}</option>)}
             </select>
             <select
                 onChange={(e) => editor.chain().focus().setFontFamily(e.target.value).run()}
                 defaultValue = {Object.keys(FONTS)[0]}>
-                {Object.keys(FONTS).map(font => <option value={FONTS[font]} key={font}>{font}</option>)}
+                {Object.keys(FONTS).map(font => <option value={FONTS[font]} style={{fontFamily: FONTS[font]}} key={font}>{font}</option>)}
             </select>
 
             <div className="editor">
