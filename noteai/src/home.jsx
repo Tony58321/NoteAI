@@ -1,11 +1,14 @@
-import NoteListing from "./components/noteListing"
+import NoteListing from "./components/noteListing";
+import getNotes from "../utilities/getNotes";
+import { useState, useEffect } from "react";
 
 
 export default function Home({user, logout, setPage}) {
-    const notes = [
-        {name: "note1", category: "cs xxx", date: "4-5-2025"},
-        {name: "planets", category: "holst", date: "9-29-1918"},
-    ]
+    const [notes, setNotes] = useState([]);
+    if (notes.length == 0) {
+        getNotes().then(fetchedNotes => setNotes(fetchedNotes));
+    }
+    console.log(notes);
     return <>
         <div className="menu">
             <button disabled>Home</button>
@@ -25,7 +28,7 @@ export default function Home({user, logout, setPage}) {
                     <tr>
                         <th>Name</th>
                         <th>Category</th>
-                        <th>Date</th>
+                        <th>Creation Date</th>
                     </tr>
                 </thead>
                 <tbody>
