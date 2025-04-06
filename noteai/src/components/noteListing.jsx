@@ -1,9 +1,7 @@
 export default function noteListing({note}) {
-    console.log(`making listing for:`)
-    console.log(note)
     return <tr>
         <td>{note.name}</td>
         <td>{note.category}</td>
-        <td>{"date placeholder"}</td>
+        <td>{(new Date(note.createdAt.seconds*1000)).toLocaleDateString()}</td>
     </tr>
 }
