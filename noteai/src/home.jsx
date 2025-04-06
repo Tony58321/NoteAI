@@ -1,6 +1,7 @@
 import NoteListing from "./components/noteListing";
 import getNotes from "../utilities/getNotes";
 import { useState, useEffect } from "react";
+import "./home.css";
 
 
 export default function Home({user, logout, setPage, setNoteID}) {
