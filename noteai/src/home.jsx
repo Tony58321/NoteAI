@@ -14,6 +14,7 @@ export default function Home({user, logout, setPage}) {
             <button disabled>Home</button>
             <button>Quiz results</button>
             <button>Etc.</button>
+            <button onClick={() => setPage("FlashCards")} >Flash Cards</button>
         </div>
         <div className="Banner">
             <h1>NoteAI</h1>
