@@ -3,6 +3,7 @@ import {generateQuiz} from '../utilities/CallGroq'
 import { useEffect,useState } from 'react'
 import React from 'react';
 import './flashCards.css'
+import getNoteData from '../utilities/getNoteData';
 
 
 
@@ -60,7 +61,7 @@ function generateCards(flashCards){
 }
 
 
-export default function FlashCards(){
+export default function FlashCards({noteID}){
 
 
 
@@ -82,15 +83,24 @@ export default function FlashCards(){
     }
     */
 
+
+
+
+
     let [flashCards, setFlashCards ] = useState(null);
     useEffect(() => {
-        generateQuiz("Put something good in here later").then((cardArray) => {
-          setFlashCards(cardArray);
-          console.log("/****************************/");
-          console.log(flashCards);
-          console.log(cardArray);
+
+        getNoteData(noteID).then(data => {
+            //data.html
+            generateQuiz(data.html).then((cardArray) => {
+                setFlashCards(cardArray);
+                console.log("/****************************/");
+                console.log(flashCards);
+                console.log(cardArray);
+              });
+
         });
-      }, []); // empty dependency array = only run once on mount
+    }, []); // empty dependency array = only run once on mount
     
 
     
